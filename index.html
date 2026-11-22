@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise IT & Cybersecurity Product Review Hub | Presales Solution Comparator</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏢</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background-color: #0b0f19; color: #e2e8f0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .glass-card { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.2); backdrop-filter: blur(12px); border-radius: 12px; }
+    .glass-card-hover:hover { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.15); }
+    .metric-badge { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur-md px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-xl">🏢</div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-lg font-bold tracking-tight text-white">ENTERPRISE PRODUCT REVIEW & POC COMPARATOR</h1>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">● PRESALES LAB</span>
+        </div>
+        <p class="text-xs text-slate-400">Vendor-Neutral Technology Benchmarks • Datacenter, Network, Security & Cloud</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-3">
+      <span class="text-xs text-slate-400 hidden sm:inline">Lead Evaluator: <strong class="text-slate-200">Febriyansyah</strong></span>
+      <a href="https://github.com/febriyansyah-id/PRODUCT-REVIEWS" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition flex items-center space-x-1.5">
+        <span>GitHub Repo</span>
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Control & Filter Bar -->
+  <div class="bg-slate-900/60 border-b border-slate-800 px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center space-x-2">
+      <button onclick="filterDomain('all')" class="domain-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-slate-900" id="btn-all">All Domains (4)</button>
+      <button onclick="filterDomain('infra')" class="domain-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white" id="btn-infra">💾 Datacenter & HCI</button>
+      <button onclick="filterDomain('network')" class="domain-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white" id="btn-network">🌐 Network & Switches</button>
+      <button onclick="filterDomain('security')" class="domain-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white" id="btn-security">🛡️ Security & NGFW</button>
+      <button onclick="filterDomain('cloud')" class="domain-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white" id="btn-cloud">☁️ Cloud & Zero Trust</button>
+    </div>
+    <div class="relative w-full sm:w-64">
+      <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search vendor, solution, or spec..." class="w-full bg-slate-800/80 border border-slate-700 text-xs rounded-lg px-3 py-1.5 text-slate-200 placeholder-slate-400 focus:outline-none focus:border-cyan-400">
+    </div>
+  </div>
+
+  <!-- Main Body -->
+  <main class="flex-1 p-6 space-y-6 max-w-7xl mx-auto w-full">
+
+    <!-- Overview Stats Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card p-4">
+        <span class="text-xs text-slate-400">TOTAL EVALUATIONS</span>
+        <div class="text-2xl font-bold text-white mt-1">4 Solutions</div>
+        <p class="text-xs text-cyan-400 mt-2 font-mono">100% Comprehensive POC</p>
+      </div>
+      <div class="glass-card p-4">
+        <span class="text-xs text-slate-400">HIGHEST SCORING TIER</span>
+        <div class="text-2xl font-bold text-emerald-400 mt-1">9.6 / 10</div>
+        <p class="text-xs text-slate-400 mt-2">FortiGate NGFW (Security)</p>
+      </div>
+      <div class="glass-card p-4">
+        <span class="text-xs text-slate-400">EVALUATION METRICS</span>
+        <div class="text-2xl font-bold text-white mt-1">6 Pillars</div>
+        <p class="text-xs text-slate-400 mt-2">Architecture, Sizing, TCO, Sec</p>
+      </div>
+      <div class="glass-card p-4">
+        <span class="text-xs text-slate-400">REGULATORY STANDARDS</span>
+        <div class="text-2xl font-bold text-purple-400 mt-1">OJK & PCI-DSS</div>
+        <p class="text-xs text-slate-400 mt-2">Financial-grade compliance</p>
+      </div>
+    </div>
+
+    <!-- Radar Chart & Comparison Matrix -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Radar Chart -->
+      <div class="glass-card p-5 lg:col-span-1 flex flex-col items-center">
+        <div class="w-full flex justify-between items-center mb-3">
+          <h2 class="text-sm font-semibold text-white">Multi-Dimensional Comparison</h2>
+          <span class="text-xs text-cyan-400 font-mono">Radar 6-Axes</span>
+        </div>
+        <div class="w-full h-64 flex items-center justify-center">
+          <canvas id="radarChart"></canvas>
+        </div>
+        <p class="text-xs text-slate-400 text-center mt-3">Visualizing Arch, Feature, Performance, GUI, Security, and TCO.</p>
+      </div>
+
+      <!-- Comparison Cards List -->
+      <div class="lg:col-span-2 space-y-4" id="cardsContainer">
+
+        <!-- Card 1: Nutanix vs Proxmox -->
+        <div class="glass-card glass-card-hover p-5 product-card" data-domain="infra">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 text-xs rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">DATACENTER & HCI</span>
+                <span class="text-xs font-semibold text-emerald-400 font-mono">SCORE: 9.4 / 10</span>
+              </div>
+              <h3 class="text-base font-bold text-white mt-1">Nutanix AHV Enterprise vs Proxmox VE Open-Source</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Vendors: Nutanix, Inc. / Proxmox Server Solutions GmbH</p>
+            </div>
+            <a href="01-INFRASTRUCTURE-DATACENTER/nutanix-ahv-vs-proxmox-ve-enterprise-poc.md" class="px-3 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded text-xs font-semibold transition">
+              Read Assessment 📄
+            </a>
+          </div>
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-4 text-center border-t border-slate-800 pt-3">
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Arch</span>
+              <span class="text-xs font-bold text-white font-mono">9.6</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Feature</span>
+              <span class="text-xs font-bold text-white font-mono">9.5</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Perf</span>
+              <span class="text-xs font-bold text-white font-mono">9.3</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Manage</span>
+              <span class="text-xs font-bold text-white font-mono">9.7</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Security</span>
+              <span class="text-xs font-bold text-white font-mono">9.4</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">TCO</span>
+              <span class="text-xs font-bold text-cyan-400 font-mono">9.0</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-slate-300">
+            <strong>Key Finding:</strong> Nutanix excels in Prism Central automated lifecycle and zero-downtime micro-segmentation; Proxmox delivers 70% TCO savings for dev/test and non-critical enterprise virtualization tiers.
+          </div>
+        </div>
+
+        <!-- Card 2: Cisco vs Aruba -->
+        <div class="glass-card glass-card-hover p-5 product-card" data-domain="network">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 text-xs rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">NETWORK & SWITCHING</span>
+                <span class="text-xs font-semibold text-emerald-400 font-mono">SCORE: 9.2 / 10</span>
+              </div>
+              <h3 class="text-base font-bold text-white mt-1">Cisco Catalyst 9300 vs Aruba CX 6300 Series</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Vendors: Cisco Systems, Inc. / Aruba Networks (Hewlett Packard Enterprise)</p>
+            </div>
+            <a href="02-NETWORK-CONNECTIVITY/cisco-catalyst-9300-vs-aruba-cx-6300.md" class="px-3 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded text-xs font-semibold transition">
+              Read Assessment 📄
+            </a>
+          </div>
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-4 text-center border-t border-slate-800 pt-3">
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Arch</span>
+              <span class="text-xs font-bold text-white font-mono">9.3</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Feature</span>
+              <span class="text-xs font-bold text-white font-mono">9.4</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Perf</span>
+              <span class="text-xs font-bold text-white font-mono">9.2</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Manage</span>
+              <span class="text-xs font-bold text-white font-mono">9.1</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Security</span>
+              <span class="text-xs font-bold text-white font-mono">9.4</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">TCO</span>
+              <span class="text-xs font-bold text-cyan-400 font-mono">8.8</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-slate-300">
+            <strong>Key Finding:</strong> Cisco Catalyst 9300 dominates high-density 90W UPOE+ and DNA Center enterprise analytics; Aruba CX offers Python REST API automation out-of-the-box and competitive recurring licensing.
+          </div>
+        </div>
+
+        <!-- Card 3: FortiGate vs Palo Alto -->
+        <div class="glass-card glass-card-hover p-5 product-card" data-domain="security">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 text-xs rounded bg-red-500/10 text-red-400 border border-red-500/30">CYBERSECURITY & NGFW</span>
+                <span class="text-xs font-semibold text-emerald-400 font-mono">SCORE: 9.6 / 10</span>
+              </div>
+              <h3 class="text-base font-bold text-white mt-1">Fortinet FortiGate vs Palo Alto Networks PAN-OS</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Vendors: Fortinet, Inc. / Palo Alto Networks, Inc.</p>
+            </div>
+            <a href="03-CYBERSECURITY-SOLUTIONS/fortigate-vs-palo-alto-enterprise-ngfw.md" class="px-3 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded text-xs font-semibold transition">
+              Read Assessment 📄
+            </a>
+          </div>
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-4 text-center border-t border-slate-800 pt-3">
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Arch</span>
+              <span class="text-xs font-bold text-white font-mono">9.7</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Feature</span>
+              <span class="text-xs font-bold text-white font-mono">9.8</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Perf</span>
+              <span class="text-xs font-bold text-white font-mono">9.6</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Manage</span>
+              <span class="text-xs font-bold text-white font-mono">9.4</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Security</span>
+              <span class="text-xs font-bold text-white font-mono">9.9</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">TCO</span>
+              <span class="text-xs font-bold text-cyan-400 font-mono">9.2</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-slate-300">
+            <strong>Key Finding:</strong> FortiGate ASIC SP5 hardware acceleration yields unmatched Gbps per dollar in branch/datacenter edge; Palo Alto WildFire App-ID remains the industry gold standard for complex layer-7 zero-day prevention.
+          </div>
+        </div>
+
+        <!-- Card 4: Cloudflare vs VPN -->
+        <div class="glass-card glass-card-hover p-5 product-card" data-domain="cloud">
+          <div class="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 text-xs rounded bg-purple-500/10 text-purple-400 border border-purple-500/30">CLOUD PLATFORM & SASE</span>
+                <span class="text-xs font-semibold text-emerald-400 font-mono">SCORE: 9.3 / 10</span>
+              </div>
+              <h3 class="text-base font-bold text-white mt-1">Cloudflare Zero Trust Access vs Traditional Concentrator VPN</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Vendors: Cloudflare, Inc. vs Legacy SSL-VPN Concentrators</p>
+            </div>
+            <a href="04-CLOUD-PLATFORM-VIRT/cloudflare-zero-trust-access-vs-traditional-vpn.md" class="px-3 py-1 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded text-xs font-semibold transition">
+              Read Assessment 📄
+            </a>
+          </div>
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-4 text-center border-t border-slate-800 pt-3">
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Arch</span>
+              <span class="text-xs font-bold text-white font-mono">9.5</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Feature</span>
+              <span class="text-xs font-bold text-white font-mono">9.3</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Perf</span>
+              <span class="text-xs font-bold text-white font-mono">9.6</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Manage</span>
+              <span class="text-xs font-bold text-white font-mono">9.5</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">Security</span>
+              <span class="text-xs font-bold text-white font-mono">9.6</span>
+            </div>
+            <div class="bg-slate-800/50 p-2 rounded">
+              <span class="text-slate-400 block text-[10px]">TCO</span>
+              <span class="text-xs font-bold text-cyan-400 font-mono">8.9</span>
+            </div>
+          </div>
+          <div class="mt-3 text-xs text-slate-300">
+            <strong>Key Finding:</strong> Eliminates public IP attack surfaces via outbound Argo Smart Routing tunnels; seamless IdP integration (Okta, Azure AD) with zero inbound open firewall ports.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/60 py-4 px-6 text-center text-xs text-slate-500">
+    Maintained by <strong class="text-slate-300">Febriyansyah</strong> • Presales Engineering & Architecture Portfolio
+  </footer>
+
+  <script>
+    // Radar Chart initialization
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    const radarChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Architecture', 'Features', 'Performance', 'Management', 'Security', 'TCO/Licensing'],
+        datasets: [
+          {
+            label: 'FortiGate NGFW',
+            data: [9.7, 9.8, 9.6, 9.4, 9.9, 9.2],
+            borderColor: '#f87171',
+            backgroundColor: 'rgba(248, 113, 113, 0.2)',
+            borderWidth: 1.5,
+            pointRadius: 2
+          },
+          {
+            label: 'Nutanix AHV',
+            data: [9.6, 9.5, 9.3, 9.7, 9.4, 9.0],
+            borderColor: '#38bdf8',
+            backgroundColor: 'rgba(56, 189, 248, 0.2)',
+            borderWidth: 1.5,
+            pointRadius: 2
+          },
+          {
+            label: 'Cloudflare ZT',
+            data: [9.5, 9.3, 9.6, 9.5, 9.6, 8.9],
+            borderColor: '#c084fc',
+            backgroundColor: 'rgba(192, 132, 252, 0.2)',
+            borderWidth: 1.5,
+            pointRadius: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+            pointLabels: { color: '#94a3b8', font: { size: 10 } },
+            ticks: { display: false, min: 8, max: 10 }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: '#cbd5e1', boxWidth: 10, font: { size: 10 } }
+          }
+        }
+      }
+    });
+
+    // Domain Filtering
+    function filterDomain(domain) {
+      const cards = document.querySelectorAll('.product-card');
+      const buttons = document.querySelectorAll('.domain-btn');
+      
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-slate-900', 'font-semibold');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+
+      const activeBtn = document.getElementById('btn-' + domain);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+        activeBtn.classList.add('bg-cyan-500', 'text-slate-900', 'font-semibold');
+      }
+
+      cards.forEach(card => {
+        if (domain === 'all' || card.getAttribute('data-domain') === domain) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Search Filtering
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

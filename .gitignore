@@ -1,0 +1,16 @@
+# Prerequisites & OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / Web artifacts (if any)
+node_modules/
+dist/
+.cache/
